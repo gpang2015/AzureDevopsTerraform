@@ -13,6 +13,11 @@ terraform {
     }
 }
 
+variable "imagebuild" {
+  type = string
+  description = "Docker Img latest Version Tag"
+  
+}
 resource "azurerm_resource_group" "tf_test" {
     name = "TF_Devops_test_RG"
     location = "Canada Central"
@@ -29,7 +34,7 @@ resource "azurerm_container_group" "tfcg_test" {
 
     container {
       name            = "weatherapi"
-      image           = "gpang2020docker/weatherapi"
+      image           = "gpang2020docker/azuredevopsterraform:${var.imagebuild}"
         cpu             = "1"
         memory          = "1"
 
