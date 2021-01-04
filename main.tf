@@ -4,8 +4,17 @@ provider "azurerm" {
      
 }
 
+terraform {
+    backend "azurerm" {
+        resource_group_name  = "DEV-K8s-RG"
+        storage_account_name = "tfstorageaccounttestinv"
+        container_name       = "tfstatedevops"
+        key                  = "terraform.tfstate"
+    }
+}
+
 resource "azurerm_resource_group" "tf_test" {
-    name = "tfmainrgtest"
+    name = "TF_Devops_test_RG"
     location = "Canada Central"
 }
 
